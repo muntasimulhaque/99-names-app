@@ -1,0 +1,28 @@
+# 99 Names of Allah
+
+A free, open-source, native Android app for reading and memorizing Al-Asma ul-Husna — the 99 Names of Allah — with Arabic, transliteration, and meanings.
+
+Based on the lecture of Sheikh Ibn Uthaymeen (Rahimahullah), as presented in *"The Ninety Nine Names of Allah: A Memorisation Tool with Transliteration and Meanings"*. Content curated at [muntasimulhaque.bearblog.dev/99-names](https://muntasimulhaque.bearblog.dev/99-names/).
+
+## Features
+
+- **Read** — all 99 names with Arabic script, transliteration, and full meanings, plus scholarly notes (e.g. the distinction between Ar-Rahmaan and Ar-Raheem). Search by name, meaning, or number.
+- **Memorize** — flashcards with a flip animation and an "I know it / Still learning" loop, a ten-question quiz, and a quiet progress count (no streaks, no gamification).
+- **Daily** — a "Name of the Day" that rotates deterministically through all 99, shown on the home screen, as an optional notification at a time you choose, and as a home-screen widget.
+- **Pure** — 100% offline. No ads, no analytics, no tracking, no network permission. The only permission is notifications, and only if you turn the daily name on.
+
+## Building
+
+1. Open the project in Android Studio (Ladybug or newer). It will download Gradle 8.7 and all dependencies on first sync — accept any suggested Gradle/AGP updates if prompted.
+2. Run on a device or emulator (minimum Android 7.0, API 24).
+3. For a release build: **Build → Generate Signed App Bundle** (see `PUBLISHING.md`).
+
+The Gradle wrapper JAR is intentionally not committed; Android Studio regenerates it. From the command line, run `gradle wrapper` once (with any local Gradle ≥ 8.7) to restore `gradlew`.
+
+## Architecture
+
+Single-module Kotlin app. Jetpack Compose + Material 3, Navigation Compose, DataStore for progress and settings, WorkManager for the daily schedule, Glance for the widget, kotlinx.serialization for the bundled `assets/names.json`. No DI framework, no database — the content is a static JSON asset, which also makes translations straightforward (swap the asset per locale).
+
+## License
+
+MIT — see [LICENSE](LICENSE). The content is presented for the benefit of anyone seeking to learn the names; please keep the attribution to the source lecture intact.
